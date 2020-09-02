@@ -29,7 +29,7 @@
     "test:reportlist": "jest --no-cache --coverage",
     "test:snaps": "jest -u",
     "test:watch": "jest --watchAll",
-    "upload-coverage": "coveralls < reports/coverage/lcov.info",
+    "upload-coverage": "coveralls < test-reports/coverage/lcov.info",
     "semantic-release": "semantic-release"
   },
   "husky": {
