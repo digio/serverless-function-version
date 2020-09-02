@@ -1,6 +1,6 @@
 {
   "name": "serverless-function-version",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Serverless plugin for obtaining the version of a Lambda function",
   "main": "src/index.js",
   "repository": {
