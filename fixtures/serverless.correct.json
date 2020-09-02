@@ -1,0 +1,81 @@
+{
+  "processedInput": {
+    "commands": ["print"],
+    "options": {
+      "s": "pre-prod",
+      "c": "slsConfig.js",
+      "config": "slsConfig.js",
+      "format": "json",
+      "stage": "pre-prod"
+    }
+  },
+  "service": {
+    "provider": {
+      "stage": "${opt:stage, \"dev\"}",
+      "variableSyntax": null,
+      "name": "aws",
+      "runtime": "nodejs12.x",
+      "region": "ap-southeast-2",
+      "versionFunctions": true,
+      "cfLogs": true,
+      "timeout": 28,
+      "memorySize": 128,
+      "tracing": {
+        "apiGateway": "${self:custom.env.TRACING_ENABLED}",
+        "lambda": "${self:custom.env.TRACING_ENABLED}"
+      },
+      "compiledCloudFormationTemplate": {
+        "Resources": {
+          "WebHookLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "some-bucket",
+                "S3Key": "serverless/service/stage/1598932385217-2020-09-01T03:53:05.217Z/some.zip"
+              },
+              "FunctionName": "service-stage-webHook",
+              "Handler": "dist/webhook/eventWebHook.handler",
+              "MemorySize": 1024,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs12.x",
+              "Timeout": 30,
+              "Environment": {
+                "Variables": {
+                  "FUNCTION_ARN": "[functionVersionArn:WebHookLambdaFunction]",
+                  "FUNCTION_VERSION": "[functionVersion:WebHookLambdaFunction]"
+                }
+              }
+            },
+            "DependsOn": [
+              "WebHookLogGroup"
+            ]
+          },
+          "WebHookLambdaFunctionJNcivYNMb6OXh1g6GW5oLreszRH5VgX9cPOshMeCro": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "WebHookLambdaFunction"
+              },
+              "CodeSha256": "6E3p4pKklU6AFa6ouCVMLA63IPDLUMbm+P3sdxwshyE="
+            }
+          }
+        }
+      }
+    },
+    "functions": {
+      "webHook": {
+        "handler": "dist/webhook/eventWebHook.handler",
+        "environment": {
+          "FUNCTION_ARN": "${functionVersionArn:webHook}",
+          "FUNCTION_VERSION": "${functionVersion:webHook}"
+        }
+      }
+    }
+  }
+}
