@@ -61,15 +61,15 @@ then be available for use within other NPM projects:
 ```shell script
 # In this project root:
 npm link
-# > /.nvm/versions/node/v10.17.0/lib/node_modules/serverless-stage-env-vars -> /mydev/serverless/serverless-stage-env-vars
+# > /.nvm/versions/node/v10.17.0/lib/node_modules/serverless-function-version -> /mydev/serverless/serverless-function-version
 
 # Change to the Serverless project directory that wants to test this package
 cd ../my-serverless-proj
 
-# Create a local symlink to serverless-stage-env-vars
-npm link serverless-stage-env-vars
+# Create a local symlink to serverless-function-version
+npm link serverless-function-version
 # > Symlinking "/mydev/my-serverless-proj/node_modules"
-# >     --> "/.nvm/versions/node/v10.17.0/lib/node_modules/serverless-stage-env-vars"
+# >     --> "/.nvm/versions/node/v10.17.0/lib/node_modules/serverless-function-version"
 ```
 
 Inside the Serverless project that will test this plugin, modify the serverless config file
@@ -132,6 +132,6 @@ npx semantic-release-cli setup
 <hr>
 
 [contributing]: CONTRIBUTING.md
-[repo]: https://github.com/digio/serverless-stage-env-vars
+[repo]: https://github.com/digio/serverless-function-version
 [readme-usage]: README.md#usage
 [semantic-release]: https://semantic-release.gitbook.io/semantic-release/
