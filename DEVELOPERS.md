@@ -106,9 +106,11 @@ npm run lint
 
 ## Semantic Release Setup
 
+This section is include for informational purposes only.
+
 This repo uses [semantic-release][semantic-release] to manage software versions and packaging.
-**There is a one-time setup step required**, which creates a GitHub personal access token, an NPM
-token, and connects them to Travis CI.
+**There is a one-time setup-step required - WHICH HAS ALREADY BEEN DONE**, which creates a GitHub
+personal access token, an NPM token, and connects them to Travis CI.
 
 One time setup:
 ```shell script
